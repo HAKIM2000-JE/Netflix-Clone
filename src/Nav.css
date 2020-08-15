@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,700");
+
+.nav_logo {
+  width: 150px;
+  object-fit: contain;
+  z-index: 1;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+}
+.nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  transition-timing-function: ease-in;
+  transition: all 0.5ms;
+}
+
+.nav_black {
+  background-color: black;
+  width: 100%;
+  position: fixed;
+  height: 100px;
+  top: 0;
+  z-index: 1;
+  transition-timing-function: ease-in;
+  transition: all 0.5ms;
+  display: flex;
+  justify-content: space-between;
+}
+.icon {
+  width: 150px;
+  object-fit: contain;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.login {
+  color: red;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+}
+.footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.nav_high {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 5800px) {
+  .login {
+    margin-right: 70px;
+  }
+}
