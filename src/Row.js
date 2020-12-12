@@ -3,11 +3,14 @@ import axios from "./axios";
 import "./Row.css";
 import Youtube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import links from './link'
 
 const URL_base = "https://image.tmdb.org/t/p/original/";
 function Row({ title, fetchUrl, islargeRow }) {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
+ 
+
   useEffect(() => {
     //  []: run one when the row is loads , and don't run again
     // [movie] : run everytime when the movie changed
@@ -29,19 +32,36 @@ function Row({ title, fetchUrl, islargeRow }) {
       autoplay: 1,
     },
   };
+
+  const myclick = ()=>{
+    // setTrailerUrl("4FVyiSy193s");
+    let film_url = links[Math.floor(Math.random() * links.length)];
+    const urlParams = new URLSearchParams(new URL(`${film_url}`).search);
+    console.log(urlParams.get('v'))
+    setTrailerUrl(urlParams.get('v'))
+    
+
+  }
   const handclick = (movie) => {
+    console.log(movie.name)
     if (trailerUrl) {
+     
       setTrailerUrl("");
     } else {
-      movieTrailer(movie?.name || "")
+      movieTrailer(`Crash`)
         .then((url) => {
           //We need to extart id from each youtube URL (the last part)
           const urlParams = new URLSearchParams(new URL(url).search);
+          console.log(url)
           setTrailerUrl(urlParams.get("v"));
+          // setTrailerUrl("4FVyiSy193s");
+        
         })
         .catch((error) => alert(error));
     }
   };
+
+  
   console.log(movies);
   return (
     <div className="row">
@@ -57,7 +77,7 @@ function Row({ title, fetchUrl, islargeRow }) {
               islargeRow ? movie.poster_path : movie.backdrop_path
             }`}
             alt={movie.name}
-            onClick={() => handclick(movie)}
+            onClick={myclick}
           />
         ))}
       </div>
